@@ -1,55 +1,50 @@
 //UsoInternoFinanzasForm.tsx
 import React from 'react';
-import { Typography, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Button, Box } from '@mui/material';
+import { Typography,
+TextField, 
+FormControl, 
+RadioGroup, 
+FormControlLabel, 
+Radio, 
+Button, 
+Box } from '@mui/material';
 
 
-interface UsointernoFinanzasProps {
-  campos: {
-    fin_valoraraprog: string;
-    fin_valormatprog: string;
-    fin_valordescprog: {
-      fin_valordescprog_1: { checked: boolean; porcentaje: number };
-      fin_valordescprog_2: { checked: boolean; porcentaje: number };
-      fin_valordescprog_3: { checked: boolean; porcentaje: number };
-      fin_valordescprog_4: { checked: boolean; porcentaje: number };
-      fin_valordescprog_5: { checked: boolean; porcentaje: number };
-      fin_valordescprog_6: { checked: boolean; porcentaje: number };
-    };
+// Define los tipos de campos y departamento según tus necesidades
+type TipoDeCampos = {
+  fin_valoraraprog: string;
+  fin_valormatprog: string;
+  fin_valordescprog: {
+    fin_valordescprog_1: { checked: boolean; porcentaje: number };
+    fin_valordescprog_2: { checked: boolean; porcentaje: number };
+    fin_valordescprog_3: { checked: boolean; porcentaje: number };
+    fin_valordescprog_4: { checked: boolean; porcentaje: number };
+    fin_valordescprog_5: { checked: boolean; porcentaje: number };
+    fin_valordescprog_6: { checked: boolean; porcentaje: number };
   };
+};
 
-  setCampos: React.Dispatch<
-    React.SetStateAction<{
-      fin_valoraraprog: string;
-      fin_valormatprog: string;
-      fin_valordescprog: {
-        fin_valordescprog_1: { checked: boolean; porcentaje: number };
-        fin_valordescprog_2: { checked: boolean; porcentaje: number };
-        fin_valordescprog_3: { checked: boolean; porcentaje: number };
-        fin_valordescprog_4: { checked: boolean; porcentaje: number };
-        fin_valordescprog_5: { checked: boolean; porcentaje: number };
-        fin_valordescprog_6: { checked: boolean; porcentaje: number };
-      };
-    }>
-  >;
+type TipoDeDepartamento = string;
 
-  departamento: string;
-  setDepartamento: React.Dispatch<React.SetStateAction<string>>;
+interface UsoInternoFinanzasProps {
+  campos: TipoDeCampos;
+  setCampos: React.Dispatch<React.SetStateAction<TipoDeCampos>>;
+  departamento: TipoDeDepartamento;
+  setDepartamento: React.Dispatch<React.SetStateAction<TipoDeDepartamento>>;
   readOnly: boolean;
   onGuardar: () => void;
   onEnviar: () => void;
 }
-
-const UsoInternoFinanzas: React.FC<UsointernoFinanzasProps> = ({
+const UsoInternoFinanzas: React.FC<UsoInternoFinanzasProps> = ({
   campos,
   setCampos,
+  departamento,
+  setDepartamento,
   readOnly,
   onGuardar,
   onEnviar,
-}) => { 
-
-  console.log ('*')
-  console.log(campos)
-
+}) => {
+  
   return (
     <Box>
       <Typography variant="h5" sx={{ marginTop: 2, marginBottom: 2, fontWeight: 'bold' }}>Uso interno Finanzas</Typography>

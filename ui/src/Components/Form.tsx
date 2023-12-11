@@ -1,14 +1,31 @@
 import React from 'react';
-import TopBar from './components/TopBar';
-import HorizontalLinearStepper from './components/HorizontalLinearStepper';
-import Footer from './components/Footer'; // Importa el componente Footer
-import './App.css'; // Ruta correcta al archivo de estilo CSS
-import { PrivateRoute } from './components/login/PrivateRoute';
+import TopBar from './TopBar';
+import HorizontalLinearStepper from './HorizontalLinearStepper';
+import Footer from './Footer'; // Importa el componente Footer
+//import { PrivateRoute } from './pages/login/PrivateRoute';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './components/login/AuthContext';
-import SolicitudesTabla from './dashboard/SolicitudesForm';
+//import { AuthProvider } from '../pages/login/AuthContext';
+import SolicitudesTabla from '../pages/resumen/SolicitudesTabla';
 
-function obtenerSolicitudes (){
+// En el archivo que contiene SolicitudesTabla
+interface Solicitud {
+    id: number;
+    fecha: string;
+    programa: string;
+    departamento: string;
+    campus: string;
+    estado: string;
+    revisionDGEC: boolean;
+    revisionDIREST: boolean;
+    revisionFINANZAS: boolean;
+  }
+
+  interface SolicitudesTablaProps {
+    solicitudes: Solicitud[];
+    datos: any[];
+  }
+  
+function obtenerSolicitudes (): Solicitud [] {
   return  [{
     id: 1,
     fecha: '2023-01-01',
@@ -19,23 +36,27 @@ function obtenerSolicitudes (){
     revisionDGEC: false,
     revisionDIREST: false,
     revisionFINANZAS: false,
-}];
-
+    }
+  ];
 }
- const App = () => {
+ const SolicitudForm: React.FC = () => {
   const solicitudesData = obtenerSolicitudes() ; // Por ejemplo, una función para obtener las solicitudes
+ 
   return (
+    <Router>
     <div>
       <TopBar />
       <div className="container">
    <h1>Solicitud Creación de Programa</h1>
    <HorizontalLinearStepper />
+   <SolicitudesTabla solicitudes={solicitudesData} />
  </div>
       <Footer />
     </div>
+    </Router>
   );
 }
-export default App;
+export default SolicitudForm;
 
 // const App = () => {
 //     const FormularioCompleto = () => {

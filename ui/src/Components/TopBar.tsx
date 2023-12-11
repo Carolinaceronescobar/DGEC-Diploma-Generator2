@@ -6,12 +6,11 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { obtenerInformacionUsuario } from '../utils/api'; //importa la función desde api.tsx
-import Routes from '../Routes';
+
 
 const TopBar: React.FC = () => {
   //Estado para gestionar el menú desplegable
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
   //Estado para almacenar la información del usuario
   const [usuario, setUsuario] = useState<any>(null);
 
@@ -20,12 +19,10 @@ const TopBar: React.FC = () => {
     //Suponiendo que el nombre de usuario esta almacenado en el local "storage" después de inicio de sesión
     const token= localStorage.getItem('token');
     const usuario= token ? JSON.parse(atob(token.split('.')[1])) : null;
-
-//Devuelve el nombre de usuario o null si no hay usuario
+    //Devuelve el nombre de usuario o null si no hay usuario
     return usuario ? usuario.userName : null;
   };
 
-    // Efecto para obtener información del usuario después de montar el componente
   // Efecto para obtener información del usuario después de montar el componente
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -43,9 +40,6 @@ const TopBar: React.FC = () => {
   }, []); 
   
   // La dependencia está vacía porque solo queremos que se ejecute una vez al montar el componente
- // La dependencia está vacía porque solo queremos que se ejecute una vez al montar el componente
-
-    // La dependencia está vacía porque solo queremos que se ejecute una vez al montar el componente
 
  // Función para manejar el cierre del menú desplegable
   const handleClose = () => {
@@ -57,12 +51,11 @@ const TopBar: React.FC = () => {
     setAnchorEl(event.currentTarget);
   };
 
-    // Función para manejar el cierre de sesión
+  // Función para manejar el cierre de sesión
     const handleLogout = () => {
       // Implementar la lógica para cerrar sesión
       console.log('Cerrando sesión...');
     };
-console.log(usuario);
 
 return (
   <AppBar position="static" style={{ backgroundColor: '#004B85' }}>

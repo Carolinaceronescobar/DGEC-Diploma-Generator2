@@ -10,7 +10,6 @@ import {
   Container,
   Grid,
   Paper,
-  Link,
   List,
   ListItem,
   ListItemText,
@@ -22,19 +21,20 @@ import {
   Menu as MenuIcon,
   Notifications as NotificationsIcon,
 } from '@mui/icons-material';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MuiDrawer from '@mui/material/Drawer';
-import { mainListItems, secondaryListItems } from './listItems';
-import Chart from '../components/Chart';
-import Deposits from '../components/Deposits';
-import Orders from '../components/Orders';
-import SolicitudesTabla from './SolicitudesForm';
+import { Link } from 'react-router-dom';
+import Content from './RoutesData.tsx';
+import Table from './Table.tsx';
+//import RoutesData from '../RoutesData.tsx';
+import SolicitudesTabla from '../pages/resumen/SolicitudesTabla.tsx';
 
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" to="https://mui.com/">
         Creación Programa
       </Link>{' '}
       {new Date().getFullYear()}
@@ -42,6 +42,18 @@ function Copyright(props: any) {
     </Typography>
   );
 }
+
+const mainListItems = [
+  { id: 1, text: 'Inicio', route: '/' },
+  { id: 2, text: 'Contenido', route: '/content' },
+  // Otros elementos según sea necesario
+];
+
+const secondaryListItems = [
+  { id: 3, text: 'Opción 1', route: '/opcion1' },
+  { id: 4, text: 'Opción 2', route: '/opcion2' },
+  // Otros elementos según sea necesario
+];
 
 const drawerWidth: number = 240;
 

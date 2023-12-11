@@ -12,7 +12,7 @@ import {
   Input,
   ButtonGroup,
 } from '@mui/material';
-import { obtenerProgramasDesdeBD } from '../../../utils/api';
+import { guardarFormulario, obtenerdetalleProgramasporID, obtenerProgramasDesdeBD } from '../../utils/api';
 
 // Define un componente funcional llamado FormularioDGEC.
 const FormularioDGEC: React.FC = () => {
@@ -68,6 +68,8 @@ useEffect(() => {
           haDictadoPrograma,
           programaSeleccionado,
           memoAdjunto,
+          handleProgramaSeleccionadoChange,
+          handleGuardarClick
         }),
       });
 

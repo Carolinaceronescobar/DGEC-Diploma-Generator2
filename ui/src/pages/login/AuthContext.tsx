@@ -21,6 +21,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+
 // Create the AuthProvider component
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children, login, logout }) => {
     const [authToken, setAuthToken] = useState<string | null>(null);

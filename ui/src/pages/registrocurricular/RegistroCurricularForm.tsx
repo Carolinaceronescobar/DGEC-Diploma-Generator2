@@ -13,40 +13,25 @@ import {
   Radio,
 } from '@mui/material';
 import Box from '@mui/system/Box';
-import UsoInternoDGEC from '../../UsoInterno/UsointernoDGEC';
-import UsoInternoDireccionEstudios from '../../UsoInterno/UsointernoDireccionEstudios';
+import UsoInternoDGEC from '../usointdgec/UsointernoDGEC';
+import UsointernoDireccionEstudios from '../usointdireccionestudios/UsointernoDireccionEstudios';
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import api from '../../../utils/api';
+//import api from '../../../utils/api';
 
 
-// Interfaces para props de Uso Interno
-interface UsoInternoProps {
-  campos: { campo1: string; campo2: string };
-  setCampos: React.Dispatch<React.SetStateAction<{ campo1: string; campo2: string }>>;
-  departamento: Departamento[];
-  setDepartamento: React.Dispatch<React.SetStateAction<Departamento[]>>;
-  readOnly: boolean;
-  onGuardar: () => void;
-  onEnviar: () => void;
-}
-
-interface Departamento {
-  id: number;
-  name: string;
-}
-
-interface Sedes {
-  id: number;
-  name: string;
-}
-
-// Componente principal
 const RegistroCurricularForm: React.FC = () => {
+//validar funciones
+const validateRequired = (value:string) => !!value.length;
+const validateEmail = (email:string) =>
+!!email.length &&
+email.toLowerCase()
+.match(
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
 
-  // Estado para el formulario principal
   const [FormularioPrincipalCompleto, setFormularioPrincipalCompleto] = useState<boolean>(false);
   
    //Estado para mostrar Uso Interno DGEC y Dirección de Estudios
@@ -103,6 +88,27 @@ setDepartamentoDGEC(depto);
       .catch(error => console.error('Error al obtener sedes:', error));
   }, []);
   
+
+// Interfaces para props de Uso Interno
+interface UsoInternoProps {
+  campos: { campo1: string; campo2: string };
+  setCampos: React.Dispatch<React.SetStateAction<{ campo1: string; campo2: string }>>;
+  departamento: Departamento[];
+  setDepartamento: React.Dispatch<React.SetStateAction<Departamento[]>>;
+  readOnly: boolean;
+  onGuardar: () => void;
+  onEnviar: () => void;
+}
+
+interface Departamento {
+  id: number;
+  name: string;
+}
+
+interface Sedes {
+  id: number;
+  name: string;
+}
 //Actualizar el EstadoFormulario principal para indicar que está completo
   const handleFormularioCompleto =() => {
   setFormularioPrincipalCompleto(true);
@@ -147,9 +153,9 @@ setDepartamentoDGEC(depto);
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ UsoInternoDireccionEstudios}),
+      body: JSON.stringify({ mostrarUsoInternoDireccionEstudios}),
     });
-  console.log ('Enviado en Direccion de Estudios', UsoInternoDireccionEstudios);
+  console.log ('Enviado en Direccion de Estudios', mostrarUsoInternoDireccionEstudios);
   } catch (error) {
     console.log('Error al enviar a Direccion de Estudios', error);
   }
@@ -171,7 +177,7 @@ setDepartamentoDGEC(depto);
         handleEnviarDGEC,
         handleEnviarDireccionEstudios,
         UsoInternoDGEC,
-        UsoInternoDireccionEstudios,
+        mostrarUsoInternoDireccionEstudios,
       }),
     });
   // Lógica para Guardar el Formulario

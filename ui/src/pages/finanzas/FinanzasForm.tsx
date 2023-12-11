@@ -13,7 +13,7 @@ import {
   InputLabel,
   Select,
 } from '@mui/material';
-import UsoInternoFinanzas from '../../UsoInterno/UsointernoFinanzasForm';
+import UsoInternoFinanzas from '../usointfinanzas/UsointernoFinanzasForm';
 
 // Definir un tipo para las claves posibles en fin_valordescprog
 type ValordescprogKey =

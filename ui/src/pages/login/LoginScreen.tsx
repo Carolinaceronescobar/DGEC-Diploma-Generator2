@@ -1,9 +1,8 @@
 // import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid, Stack, Button, Divider } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 import Logo from "../../assets/Recurso 1.svg";
 import Background from "../../assets/MicrosoftTeams-image.png";
-
 import MicrosoftIcon from "@mui/icons-material/Microsoft";
 import axios from "axios";
 

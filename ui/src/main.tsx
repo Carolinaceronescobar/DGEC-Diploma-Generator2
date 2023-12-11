@@ -1,25 +1,13 @@
-// main.tsx
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import { StyledEngineProvider } from "@mui/material/styles";
-import App from "./App";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter } from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './App.css'
 
-const queryClient = new QueryClient();
-
-ReactDOM.createRoot(document.querySelector("#root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      </BrowserRouter>
-    </StyledEngineProvider>
-  </React.StrictMode>
-);
-
+    <App />
+  </React.StrictMode>,
+)
 
 
 

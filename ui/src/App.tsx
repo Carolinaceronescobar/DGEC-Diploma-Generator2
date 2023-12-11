@@ -1,18 +1,26 @@
 // App.tsx
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import { setupAxiosInterceptors } from '../src/pages/login/axiosConfig'; 
-import { AuthProvider } from '../src/pages/login/AuthContext';
-import SideBar from "./Components/SideBar";
-import Login from "./pages/login/LoginScreen";
-import AuthCallback from "./pages/login/AuthCallback";
+import React, { useEffect, useState } from 'react';
+import TopBar from './components/TopBar';
+import HorizontalLinearStepper from './components/HorizontalLinearStepper';
+import Footer from './components/Footer';
+
+// import AppRoutes from './Routes';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from '../login/AuthContext.tsx';
+import LoginScreen from './pages/login/LoginScreen.tsx';
+import { PrivateRoute } from './auth/PrivateRoute';
+import Dashboard from './Components/SideBar';
+import UsoInternoFinanzas from './pages/usointfinanzas/UsointernoFinanzasForm';
+import UsoInternoDGEC from './pages/usointdgec/UsointernoDGEC';
+import UsointernoDireccionEstudios from './pages/usointdireccionestudios/UsointernoDireccionEstudios';
+import Formulario from '../Components/Form.tsx';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const handleLogin = (token: any) => {
+  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
+  
+  const handleLogin = (token:any) => {
     setIsAuthenticated(true);
-    // Store token securely (e.g., in-memory)
+    //Store token securely (e.g., in-memory)
   };
 
   const handleLogout = () => {
@@ -23,16 +31,23 @@ function App() {
     setupAxiosInterceptors(handleLogout);
   }, []);
 
-  return (
-    <AuthProvider login={handleLogin} logout={handleLogout}>
-      {isAuthenticated && <SideBar />}
+    return (
+      
+        <AuthProvider login={handleLogin} logout={handleLogout}>
+          {isAuthenticated && <SideBar />}
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
-        </Routes>
-    </AuthProvider>
-  );
-}
+          <Route path="/" element={<LoginScreen />} />
+          <Route path="/home" element={<Dashboard/>} />
+          <Route path="/formulario" element={<Formulario/>} />
+
+          <Route path="/finanzas" element={<UsoInternoFinanzas />} />
+          <Route path="/Dgec" element={<UsoInternoDGEC />} />
+          <Route path="/DireccionEstudios" element={<UsointernoDireccionEstudios/>} /> 
+       </Routes>
+       </AuthProvider>   
+      
+    );
+  };
 
 export default App;
 

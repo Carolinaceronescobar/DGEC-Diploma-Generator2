@@ -13,7 +13,7 @@ import {
 import Box from '@mui/system/Box';
 import Input from '@mui/material/Input';
 import Container from '@mui/material/Container';
-import { guardarFormulario } from '../../../utils/api';
+import { guardarFormulario } from '../../utils/api';
 
 // Definición del componente funcional AdmisionForm
 const AdmisionForm: React.FC = () => {
